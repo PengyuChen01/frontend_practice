@@ -5,7 +5,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import { useState } from 'react';
+import TextField from '@mui/material/TextField';
 function createData(
   name: string,
   calories: number,
@@ -25,7 +26,12 @@ const rows = [
 ];
 
 function DataTable() {
+  const [search, setSearch] = useState("");
+  const [orderBy, setOrderBy] = useState("name");
+  const [order, setOrder] = useState(true);
   return (
+    <><TextField id="standard-basic" label="Standard" variant="standard" value={search} onChange={(e) => setSearch(e.target.value)} />
+
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -38,7 +44,7 @@ function DataTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows.filter((row) => row.name.toLowerCase().includes(search.toLowerCase())).map((row) => (
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -55,6 +61,7 @@ function DataTable() {
         </TableBody>
       </Table>
     </TableContainer>
+    </>
   );
 }
 
