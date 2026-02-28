@@ -42,9 +42,9 @@ function DataTable() {
             <TableCell align="right">Carbs&nbsp;(g)</TableCell>
             <TableCell align="right">Protein&nbsp;(g)</TableCell>
           </TableRow>
-        </TableHead>
+        </TableHead>  
         <TableBody>
-          {rows.filter((row) => row.name.toLowerCase().includes(search.toLowerCase())).map((row) => (
+          {rows.filter((row) => row.name.toLowerCase().includes(search.toLowerCase())).sort((a, b) => a.name.localeCompare(b.name)).map((row) => (
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
