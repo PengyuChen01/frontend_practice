@@ -27,11 +27,16 @@ const rows = [
 
 function DataTable() {
   const [search, setSearch] = useState("");
-  const [orderBy, setOrderBy] = useState("name");
+  const [orderBy, setOrderBy] = useState<keyof ReturnType<typeof createData>>("name");
   const [order, setOrder] = useState(true);
   return (
-    <><TextField id="standard-basic" label="Standard" variant="standard" value={search} onChange={(e) => setSearch(e.target.value)} />
-
+    <>
+<button onClick={() => {
+        setOrderBy("name");
+        setOrder(!order);
+      }}> {order ? "Sort A→Z" : "Sort Z→A"}  </button>
+    <TextField id="standard-basic" label="Standard" variant="standard" value={search} onChange={(e) => setSearch(e.target.value)} />
+      
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -44,7 +49,7 @@ function DataTable() {
           </TableRow>
         </TableHead>  
         <TableBody>
-          {rows.filter((row) => row.name.toLowerCase().includes(search.toLowerCase())).sort((a, b) => a.name.localeCompare(b.name)).map((row) => (
+          {rows.filter((row) => row.name.toLowerCase().includes(search.toLowerCase())).sort((a, b) => order ? String(a[orderBy]).localeCompare(String(b[orderBy])) : String(b[orderBy]).localeCompare(String(a[orderBy]))).map((row) => (
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
