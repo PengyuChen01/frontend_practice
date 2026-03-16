@@ -1,0 +1,43 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+\begin{document}
+\begin{tikzpicture}[
+    node distance=1.5cm and 2cm,
+    var/.style={circle, draw, minimum size=1cm, font=\large},
+    op/.style={rectangle, draw, minimum size=0.8cm, font=\large},
+    arr/.style={-{Stealth[length=3mm]}, thick}
+]
+
+% Input variables
+\node[var] (x) {$x$};
+\node[var, right=of x] (y) {$y$};
+
+% Operations
+\node[op, above right=1.5cm and 0.5cm of x] (mul) {$\times$};
+\node[op, right=2cm of mul] (add) {$+$};
+\node[var, above=of add] (b) {$b$};
+
+% Intermediate and output
+\node[var, right=of add] (z) {$z$};
+\node[op, right=of z] (sigmoid) {$\sigma$};
+\node[var, right=of sigmoid] (out) {$L$};
+
+% Edges
+\draw[arr] (x) -- (mul);
+\draw[arr] (y) -- (mul);
+\draw[arr] (mul) -- node[above] {$x \cdot y$} (add);
+\draw[arr] (b) -- (add);
+\draw[arr] (add) -- node[above] {$x \cdot y + b$} (z);
+\draw[arr] (z) -- (sigmoid);
+\draw[arr] (sigmoid) -- (out);
+
+% Labels
+\node[below=0.3cm of x, font=\small, color=blue] {input};
+\node[below=0.3cm of y, font=\small, color=blue] {input};
+\node[above=0.3cm of b, font=\small, color=blue] {bias};
+\node[below=0.3cm of out, font=\small, color=red] {output};
+
+\end{tikzpicture}
+\end{document}
