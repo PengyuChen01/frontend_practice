@@ -1,0 +1,100 @@
+.demo-layout {
+  text-align: left;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  margin: -2rem;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #1a1a2e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  /* BUG: z-index 太高，会盖住 sidebar */
+  z-index: 9999;
+}
+
+.navbar-brand {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 16px;
+}
+
+.navbar-links a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.navbar-links a:hover {
+  color: white;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  position: fixed;
+  top: 60px;          /* 从 navbar 下方开始，避免重叠 */
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: #16213e;
+  color: white;
+  padding: 5px 10px;
+  padding-top: 5px; /* 按钮直接从顶部开始，和 navbar 完全重叠 */
+  /* BUG: z-index 比 navbar 低 */
+  z-index: 100;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.sidebar-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #0f3460;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.sidebar-btn:hover {
+  background: #1a5276;
+}
+
+.sidebar-btn.danger {
+  background: #e94560;
+}
+
+.sidebar-btn.danger:hover {
+  background: #c0392b;
+}
+
+/* ===== Main Content ===== */
+.main-area {
+  display: flex;
+  padding-top: 60px;
+}
+
+.content {
+  margin-left: 220px;
+  padding: 40px;
+  color: white;
+}

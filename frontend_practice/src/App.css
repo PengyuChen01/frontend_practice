@@ -40,3 +40,14 @@
 .read-the-docs {
   color: #888;
 }
+
+.math-block {
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  background: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  margin: 8px 0;
+  border-left: 3px solid #FF5722;
+  line-height: 1.6;
+}
